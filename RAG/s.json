@@ -1,0 +1,24 @@
+{
+    "matches": [
+        {
+            "id": "doc-2",
+            "score": 0.716377378,
+            "values": [],
+            "metadata": {
+                "text": "• YouTube tutorials\n• Random blog posts\n• Last-night-before-exam preparation\nHe often felt busy, but rarely felt clear.\nChapter 2: The First Internship"
+            }
+        },
+        {
+            "id": "doc-4",
+            "score": 0.704761207,
+            "values": [],
+            "metadata": {
+                "text": "We care if you can debug when things break.”\nDuring the internship:\n• Aarav struggled to understand an existing codebase\n• He was afraid to ask questions"
+            }
+        }
+    ],
+    "namespace": "__default__",
+    "usage": {
+        "readUnits": 1
+    }
+}
