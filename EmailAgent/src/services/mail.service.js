@@ -1,3 +1,35 @@
+import fs from "fs";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function sendEmail({ to, subject, html, text = "", attachments }) {
+    try {
+        const formattedAttachments = attachments?.map(att => ({
+            filename: att.filename,
+            content: fs.readFileSync(att.path), // ✅ FIX HERE
+        })) || [];
+
+        const response = await resend.emails.send({
+            from: "onboarding@resend.dev",
+            to,
+            subject,
+            html,
+            text,
+            attachments: formattedAttachments,
+        });
+
+        console.log("Email sent:", response);
+        return "email sent successfully to " + to;
+
+    } catch (error) {
+        console.error("Email sending failed:", error);
+        throw error;
+    }
+}
+
+
+
 // import nodemailer from "nodemailer";
 
 // const transporter = nodemailer.createTransport({
@@ -31,34 +63,3 @@
 //     console.log("Email sent:", details);
 //     return "email sent successfully, to " + to;
 // }
-
-
-import fs from "fs";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-export async function sendEmail({ to, subject, html, text = "", attachments }) {
-    try {
-        const formattedAttachments = attachments?.map(att => ({
-            filename: att.filename,
-            content: fs.readFileSync(att.path), // ✅ FIX HERE
-        })) || [];
-
-        const response = await resend.emails.send({
-            from: "onboarding@resend.dev",
-            to,
-            subject,
-            html,
-            text,
-            attachments: formattedAttachments,
-        });
-
-        console.log("Email sent:", response);
-        return "email sent successfully to " + to;
-
-    } catch (error) {
-        console.error("Email sending failed:", error);
-        throw error;
-    }
-}

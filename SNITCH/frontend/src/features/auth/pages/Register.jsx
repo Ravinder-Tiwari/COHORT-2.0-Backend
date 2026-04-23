@@ -212,6 +212,9 @@ const Register = () => {
                             </button>
                         </div>
 
+                         <a href="/api/auth/google">
+                                        continue with google
+                         </a>               
                         {/* Submit Button */}
                         <button
                             type="submit"

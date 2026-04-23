@@ -81,3 +81,9 @@ export const loginUser = async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 }
+
+export const googleCallback = async(req,res)=>{
+    console.log(req.user)
+
+    res.redirect("http://localhost:5173/")
+}
