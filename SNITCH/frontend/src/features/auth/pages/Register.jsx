@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hook/useAuth';
 import { Link, useNavigate } from 'react-router';
+import ContinueWithGoogle from '../components/ContinueWIthGoogle';
 
 
 const Register = () => {
@@ -212,10 +213,8 @@ const Register = () => {
                             </button>
                         </div>
 
-                         <a href="/api/auth/google">
-                                        continue with google
-                         </a>               
-                        {/* Submit Button */}
+                         <ContinueWithGoogle />
+                        
                         <button
                             type="submit"
                             className="w-full mt-4 bg-[#c9a96e] text-[#0a0a0a] text-sm font-semibold uppercase tracking-[0.25em]

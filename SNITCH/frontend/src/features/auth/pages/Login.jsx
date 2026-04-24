@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hook/useAuth';
 import { Link, useNavigate } from 'react-router';
+import ContinueWithGoogle from '../components/ContinueWIthGoogle';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -152,6 +153,7 @@ const Login = () => {
                         </button>
                     </form>
 
+                    <ContinueWithGoogle />
                     {/* Footer Link */}
                     <p className="text-center text-white/25 text-sm mt-10 tracking-wide">
                         Don't have an account?{' '}

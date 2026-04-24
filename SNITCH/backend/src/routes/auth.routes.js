@@ -3,6 +3,7 @@ import { validateLogin, validateRegistration } from "../validator/auth.validator
 import { googleCallback, registerUser } from "../controllers/auth.controller.js";
 import { loginUser } from "../controllers/auth.controller.js";
 import passport from "passport";
+import { config } from "../config/config.js";
 const authRouter = Router()
 
 authRouter.post("/register",validateRegistration,registerUser)
@@ -13,7 +14,7 @@ authRouter.get('/google',
 );
 
 authRouter.get('/google/callback',
-  passport.authenticate('google', { session: false }),googleCallback
+  passport.authenticate('google', { session: false,failureRedirect:config.NODE_ENV? "http://localhost:5173/login":"/login" }),googleCallback
 );
 
 export default authRouter
