@@ -43,3 +43,23 @@ export const createProduct = async (req, res, next) => {
     res.status(500).json({ message: error.message })
 }
 }
+
+export const getSellerProducts = async (req,res) =>{
+    try{
+        const seller = req.user
+
+        const products = await productModel.find({ seller: seller._id })
+
+        return res.status(200).json({
+            message:"products fetched successfully",
+            products
+        })
+    }
+    catch(err){
+        return res.status(500).json({
+            message:err.message
+        })
+    }
+
+    
+}
