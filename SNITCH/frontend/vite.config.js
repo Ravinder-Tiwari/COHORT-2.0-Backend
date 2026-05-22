@@ -7,11 +7,11 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   server:{
-    proxy:{
+    proxy:{ // when frontend makes a request to /api, it will be forwarded to http://localhost:3000
       "/api":{
         target:"http://localhost:3000",
-        changeOrigin:true,
-        secure:false
+        changeOrigin:true, // for virtual hosted sites
+        secure:false //set to false if your backend is running on http and not https
       }
     }
   }
