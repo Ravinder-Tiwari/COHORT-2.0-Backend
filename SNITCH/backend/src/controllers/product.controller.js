@@ -1,13 +1,17 @@
 import productModel from "../models/product.model.js";
 import { uploadFile } from "../services/storage.service.js";
 
-
-export const createProduct = async (req, res) => {
+export const createProduct = async (req, res, next) => {
     try {
-        const { title, description, priceAmount, priceCurrency } = req.body
+        const {
+            title,
+            description,
+            priceAmount,
+            priceCurrency = "INR"
+        } = req.body;
+
         const seller = req.user;
 
-        console.log(seller)
 
         //Images get uploaded to storage and we get back the URLs
         const images = await Promise.all(req.files.map(async (file) => {
@@ -19,11 +23,11 @@ export const createProduct = async (req, res) => {
 
         console.log(images)
         const newProduct = await productModel.create({
-            title,
-            description,
+            title: title.trim(),
+            description: description.trim(),
             price: {
                 amount: priceAmount,
-                currency: priceCurrency || "INR"
+                currency: priceCurrency ||  "INR"
             },
             seller: seller._id,
             images: images.map(img => ({
@@ -32,33 +36,10 @@ export const createProduct = async (req, res) => {
             }))
         })
 
-        res.status(201).json({ message: "Product created successfully", product: newProduct })
+        res.status(201).json({ message: "Product created successfully", product: newProduct })  
 
-    }
-    catch (error) {
-        res.status(500).json({ message: error.message })
-    }
 }
-
-
-export const getSellerProducts = async (req, res) => {
-    try {
-
-        const seller = req.user
-
-        if (!seller) {
-            return res.status(404).json({ message: "Seller not found" })
-        }
-
-        const products = await productModel.find({ seller: seller._id })
-
-        res.status(200).json({
-            message: "Products fetched successfully",
-            success: true,
-            products
-        })
-    }
     catch (error) {
-        res.status(500).json({ message: error.message })
-    }
+    res.status(500).json({ message: error.message })
+}
 }
