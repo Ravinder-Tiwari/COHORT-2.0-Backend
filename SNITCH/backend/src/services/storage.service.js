@@ -1,7 +1,7 @@
 import ImageKit from "@imagekit/nodejs";
 import { config } from "../config/config.js";
 
-export const imageKit = new ImageKit({
+export const client = new ImageKit({
     privateKey: config.IMAGEKIT_PRIVATE_KEY,
 })
 
