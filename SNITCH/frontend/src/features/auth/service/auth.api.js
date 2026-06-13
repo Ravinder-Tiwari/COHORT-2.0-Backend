@@ -39,3 +39,15 @@ export async function login({email,password}){
         throw err
     }   
 }
+
+export async function getMe(){
+    try{
+        const response = await authApiInstance.get("/get-me")
+        // console.log(response)
+        return response.data
+    }
+    catch(err){
+        console.log(err.response?.data)
+        throw err
+    }   
+}

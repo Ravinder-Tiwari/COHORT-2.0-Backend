@@ -6,7 +6,7 @@ import ContinueWithGoogle from '../components/ContinueWIthGoogle';
 const Login = () => {
     const navigate = useNavigate();
     const { handleLogin } = useAuth();
-    
+
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [showPassword, setShowPassword] = useState(false);
 
@@ -17,8 +17,19 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await handleLogin({ email: formData.email, password: formData.password });
-        navigate("/");
+        try {
+            const user = await handleLogin({ email: formData.email, password: formData.password });
+            if (user.role === "buyer") {
+                navigate("/");
+                return;
+            } else if (user.role === "seller") {
+                navigate("/seller/dashboard");
+                return;
+            }
+        } catch (err) {
+            console.log(err)
+        }
+
     };
 
     return (

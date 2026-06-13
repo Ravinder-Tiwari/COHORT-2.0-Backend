@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { validateLogin, validateRegistration } from "../validator/auth.validator.js";
 import { googleCallback, registerUser } from "../controllers/auth.controller.js";
-import { loginUser } from "../controllers/auth.controller.js";
+import { loginUser, getMe } from "../controllers/auth.controller.js";
 import passport from "passport";
 import { config } from "../config/config.js";
+import { authenticatUser } from "../middlewares/auth.middleware.js";
 const authRouter = Router()
 
 authRouter.post("/register",validateRegistration,registerUser)
@@ -17,4 +18,6 @@ authRouter.get('/google/callback',
   passport.authenticate('google', { session: false,failureRedirect:config.NODE_ENV? "http://localhost:5173/login":"/login" }),googleCallback
 );
 
+
+authRouter.get("/get-me", authenticatUser,getMe)
 export default authRouter
