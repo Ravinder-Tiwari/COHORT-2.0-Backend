@@ -26,3 +26,11 @@ export async function getSellerProducts(){
 
     return response.data;
 }
+
+
+export async function getAllProducts(){
+
+    const response = await productApi.get("/")
+    return response.data;
+    
+}
