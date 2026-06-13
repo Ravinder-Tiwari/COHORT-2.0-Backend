@@ -3,29 +3,26 @@ import React from "react";
 const ContinueWithGoogle = () => {
     return (
         <div className="w-full">
-            {/* Divider */}
-            <div className="flex items-center gap-4 my-6">
-                <div className="flex-1 h-[1px] bg-white/8" />
-                <span className="text-[10px] text-white/20 tracking-[0.25em] uppercase">
-                    or
+            <div className="flex items-center gap-4 my-8">
+                <div className="flex-1 h-px bg-purple-100" />
+                <span className="text-[10px] text-gray-300 tracking-[0.3em] uppercase font-bold">
+                    OR
                 </span>
-                <div className="flex-1 h-[1px] bg-white/8" />
+                <div className="flex-1 h-px bg-purple-100" />
             </div>
 
-            {/* Google Button */}
             <a
                 href="/api/auth/google"
-                className="group w-full flex items-center justify-center gap-3
-                           border border-white/10 hover:border-[#c9a96e]/50
-                           bg-transparent hover:bg-[#c9a96e]/5
-                           py-3.5 px-6
-                           transition-all duration-300 cursor-pointer"
+                className="group w-full flex items-center justify-center gap-4
+                           border border-purple-100 rounded-xl
+                           bg-white hover:bg-purple-50
+                           py-4 px-8
+                           transition-all duration-300 cursor-pointer shadow-sm shadow-purple-50"
             >
-                {/* Official Google "G" SVG */}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 48 48"
-                    className="w-4 h-4 shrink-0"
+                    className="w-5 h-5 flex-shrink-0"
                     aria-hidden="true"
                 >
                     <path
@@ -45,8 +42,7 @@ const ContinueWithGoogle = () => {
                         d="M24 47c5.5 0 10.12-1.82 13.5-4.95l-7.19-5.58c-1.82 1.22-4.15 1.95-6.31 1.95-6.23 0-11.57-4.39-13.32-10.27l-7.68 6.27C7.07 41.52 14.82 47 24 47z"
                     />
                 </svg>
-
-                <span className="text-[11px] text-white/40 group-hover:text-white/70 uppercase tracking-[0.2em] transition-colors duration-300">
+                <span className="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em]">
                     Continue with Google
                 </span>
             </a>
@@ -54,4 +50,4 @@ const ContinueWithGoogle = () => {
     );
 };
 
-export default ContinueWithGoogle;
+export default ContinueWithGoogle;

@@ -13,14 +13,15 @@ export const useAuth = ()=>{
 
         const data = await register({email,contact,password,fullname,isSeller })
         console.log(data)
-        dispatch(setUser(data))
+        dispatch(setUser(data.user))
     }
 
     async function handleLogin({email,password}){
 
         const data = await login({email,password})
-        console.log(data)   
-        dispatch(setUser(data))
+        console.log(data.user.fullname)   
+        dispatch(setUser(data.user))
+        
     }
     
 

@@ -15,7 +15,7 @@ const productRouter = Router()
 
 /**
  * - POST /api/products/create
- */
+ */  
 productRouter.post("/create",authenticateSeller,upload.array("images",7),validateProductCreation,createProduct)
 
 

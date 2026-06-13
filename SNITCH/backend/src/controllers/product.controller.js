@@ -47,7 +47,7 @@ export const createProduct = async (req, res, next) => {
 export const getSellerProducts = async (req,res) =>{
     try{
         const seller = req.user
-
+        console.log("hi")
         const products = await productModel.find({ seller: seller._id })
 
         return res.status(200).json({
